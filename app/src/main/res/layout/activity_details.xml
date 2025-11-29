@@ -49,4 +49,15 @@
         app:layout_constraintStart_toStartOf="@+id/movie_poster"
         app:layout_constraintTop_toBottomOf="@+id/movie_poster"
         tools:text="Overview" />
+
+    <TextView
+        android:layout_width="0dp"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_height="wrap_content"
+        android:id="@+id/popularity_text"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@id/overview_text"
+        app:layout_constraintStart_toStartOf="@id/overview_text"
+        app:layout_constraintTop_toBottomOf="@id/overview_text"
+        tools:text="Popularity" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
             putExtra(DetailsActivity.EXTRA_RELEASE, movie.releaseDate)
             putExtra(DetailsActivity.EXTRA_OVERVIEW, movie.overview)
             putExtra(DetailsActivity.EXTRA_POSTER, movie.posterPath)
+            putExtra(DetailsActivity.EXTRA_POPULARITY, movie.popularity)
         }
         startActivity(intent)
     }

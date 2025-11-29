@@ -13,6 +13,7 @@ class DetailsActivity : AppCompatActivity() {
         const val EXTRA_RELEASE = "release"
         const val EXTRA_OVERVIEW = "overview"
         const val EXTRA_POSTER = "poster"
+        const val EXTRA_POPULARITY = "popularity"
         const val IMAGE_URL = "https://image.tmdb.org/t/p/w185/"
     }
 
@@ -24,6 +25,7 @@ class DetailsActivity : AppCompatActivity() {
         val releaseText: TextView = findViewById(R.id.release_text)
         val overviewText: TextView = findViewById(R.id.overview_text)
         val poster: ImageView = findViewById(R.id.movie_poster)
+        val popularityText: TextView = findViewById(R.id.popularity_text)
 
         val extras = intent.extras
 
@@ -32,6 +34,9 @@ class DetailsActivity : AppCompatActivity() {
 
         overviewText.text =
             getString(R.string.movie_overview, extras?.getString(EXTRA_OVERVIEW).orEmpty())
+
+        popularityText.text =
+            getString(R.string.movie_popularity, extras?.getFloat(EXTRA_POPULARITY) ?: 0f)
 
         val posterPath = extras?.getString(EXTRA_POSTER).orEmpty()
         Glide.with(this@DetailsActivity)
