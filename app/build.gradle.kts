@@ -1,15 +1,21 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    kotlin("kapt") // Wajib jika pakai moshi-kotlin-codegen
+    id("com.google.devtools.ksp")
 }
 
+
 android {
-    namespace = "com.example.test_lab_week_12"
+    buildFeatures {
+        dataBinding = true
+    }
+
+
+    namespace = "com.example.lab_week_13"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.test_lab_week_12"
+        applicationId = "com.example.lab_week_13"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -44,7 +50,11 @@ dependencies {
     implementation(libs.converter.moshi)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
-    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.15.0")
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.work.runtime)
+    ksp(libs.androidx.room.compiler)
+    ksp(libs.moshi.kotlin.codegen)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
