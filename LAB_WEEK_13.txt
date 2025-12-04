@@ -1,0 +1,50 @@
+1. Why is MVVM important? Which files represent Model, which files represent
+   View, and which files represent ViewModel?
+
+   MVVM digunakan untuk memisahkan UI (View) dari logic aplikasi (ViewModel dan Model).
+   Tujuannya agar:
+
+   a. kode lebih rapi dan mudah dimaintain,
+
+   b. UI otomatis update saat data berubah,
+
+   c. logic mudah di-test,
+
+   d. aplikasi lebih scalable.
+
+   - Model: Movie.kt, MovieService, MovieDao, MovieDatabase (data layer).
+   - View: activity_main.xml, RecyclerView, MovieAdapter, MainActivity.kt (UI layer).
+   - ViewModel: MovieViewModel.kt (menghubungkan data dari Model ke View).
+
+
+2. In Part 1, you implemented Data Binding, why is this more efficient than using
+   the normal method?
+
+   Data Binding memungkinkan View berkomunikasi langsung dengan ViewModel tanpa perlu findViewById atau manual update UI. Hal ini:
+   - Mengurangi boilerplate code.
+   - Memastikan UI otomatis ter-update ketika data berubah (misalnya lewat LiveData/StateFlow).
+   - Lebih aman karena binding class dihasilkan secara otomatis oleh compiler.
+
+3. In Part 2, you implemented the Singleton Pattern, why is this important.
+
+    Singleton Pattern memastikan hanya ada satu instance dari MovieDatabase yang digunakan di seluruh aplikasi.
+    - Menghindari race condition antar-thread.
+    - Menjaga konsistensi data.
+    - Menghemat resource karena membuat instance database baru itu mahal (expensive).
+    - Menjamin validitas data ketika banyak komponen mengakses database secara bersamaan.
+
+4. In Part 2 & 3, you implemented the Repository Pattern, why is this important?
+
+Repository Pattern bertindak sebagai abstraksi antara data source (API dan Room).
+- Menyediakan satu pintu akses data, baik online maupun offline.
+- Memudahkan sinkronisasi antara remote data source (API) dan local cache (Room).
+- Mendukung offline-first: aplikasi tetap bisa digunakan meski tidak ada koneksi internet.
+- Memisahkan logika pengambilan data dari ViewModel sehingga kode lebih bersih.
+
+5. In part 3, you implemented the Worker Manager, is there another way to refresh
+  your database with the latest data other than using Worker?
+
+  - AlarmManager: menjadwalkan task pada waktu tertentu.
+  - Foreground Service / Background Service: menjalankan proses update secara terus-menerus.
+  - Manual refresh oleh user: misalnya dengan pull-to-refresh di UI.
+  - Firebase Cloud Messaging (FCM): server mengirim notifikasi/data terbaru ke aplikasi.
