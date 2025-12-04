@@ -4,8 +4,8 @@ import androidx.room.Entity
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
-@Entity(tableName = "movies", primaryKeys=["id"])
 @JsonClass(generateAdapter = true)
+@Entity(tableName = "movies", primaryKeys=["id"])
 data class Movie(
     val adult: Boolean = false,
     val backdrop_path: String? = null,
